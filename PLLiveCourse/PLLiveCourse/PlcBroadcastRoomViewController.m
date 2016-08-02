@@ -28,6 +28,19 @@
     });
     
     self.cameraStreamingSession = [self _generateCameraStreamingSession];
+    
+    [self.view addSubview:({
+        UIView *preview = self.cameraStreamingSession.previewView;
+        preview.frame = self.view.bounds;
+        preview.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+                                   UIViewAutoresizingFlexibleHeight;
+        preview;
+    })];
+    
+    NSURL *cloudURL = [NSURL URLWithString:@"http://pili2-demo.qiniu.com/api/stream"];
+    [self _generatePushURLWithCloudURL:cloudURL withComplete:^(NSURL *pushURL) {
+        
+    }];
 }
 
 - (PLCameraStreamingSession *)_generateCameraStreamingSession
@@ -40,52 +53,44 @@
     PLAudioCaptureConfiguration *audioCaptureConfiguration;
     // 音频推流配置，对应的是推流出去的声音。
     PLAudioStreamingConfiguration *audioSreamingConfiguration;
-    // 摄像头采集方向
-    AVCaptureVideoOrientation captureOrientation;
     
-    videoCaptureConfiguration =
-    [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:30
-                                                  sessionPreset:AVCaptureSessionPresetMedium
-                                       previewMirrorFrontFacing:YES
-                                        previewMirrorRearFacing:NO
-                                        streamMirrorFrontFacing:NO
-                                         streamMirrorRearFacing:NO
-                                                 cameraPosition:AVCaptureDevicePositionFront//前置摄像头
-                                               videoOrientation:AVCaptureVideoOrientationPortrait];
-    
+    videoCaptureConfiguration = [PLVideoCaptureConfiguration defaultConfiguration];
+    videoStreamingConfiguration = [PLVideoStreamingConfiguration defaultConfiguration];
     audioCaptureConfiguration = [PLAudioCaptureConfiguration defaultConfiguration];
-    
-    // videoSize 指推流出去后的视频分辨率，建议与摄像头的采集分辨率设置得一样。
-    CGSize videoSize = CGSizeMake(480 , 640);
-    
-    videoStreamingConfiguration =
-    [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize
-                                expectedSourceVideoFrameRate:30
-                                    videoMaxKeyframeInterval:90
-                                         averageVideoBitRate:512 * 1024
-                                           videoProfileLevel:AVVideoProfileLevelH264Baseline31];
-    
-    // 让摄像头的采集方向与设备的实际方向一致。
-    // 这样才能保证，主播把手机横放时，播出去的画面方向依然是“正”的。
     audioSreamingConfiguration = [PLAudioStreamingConfiguration defaultConfiguration];
-    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
-    if (deviceOrientation == UIDeviceOrientationPortrait ||
-        deviceOrientation == UIDeviceOrientationPortraitUpsideDown ||
-        deviceOrientation == UIDeviceOrientationLandscapeLeft ||
-        deviceOrientation == UIDeviceOrientationLandscapeRight) {
-        captureOrientation = (AVCaptureVideoOrientation) deviceOrientation;
-    } else {
-        captureOrientation = AVCaptureVideoOrientationPortrait;
-    }
     
+    AVCaptureVideoOrientation captureOrientation = AVCaptureVideoOrientationPortrait;
+
     PLStream *stream = nil;
-    
     return [[PLCameraStreamingSession alloc] initWithVideoCaptureConfiguration:videoCaptureConfiguration
                                                      audioCaptureConfiguration:audioCaptureConfiguration
                                                    videoStreamingConfiguration:videoStreamingConfiguration
                                                    audioStreamingConfiguration:audioSreamingConfiguration
                                                                         stream:stream
                                                               videoOrientation:captureOrientation];
+}
+
+- (void)_generatePushURLWithCloudURL:(NSURL *)cloudURL withComplete:(void (^)(NSURL *pushURL))complete
+{
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:cloudURL];
+    request.HTTPMethod = @"POST";
+    request.timeoutInterval = 10;
+    
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable responseError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *error = responseError;
+            if (error != nil || response == nil || data == nil) {
+                NSLog(@"获取推流 URL 失败");
+                return;
+            }
+            
+            NSURL *pushURL = [NSURL URLWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+            if (complete) {
+                complete(pushURL);
+            }
+        });
+    }];
+    [task resume];
 }
 
 @end
