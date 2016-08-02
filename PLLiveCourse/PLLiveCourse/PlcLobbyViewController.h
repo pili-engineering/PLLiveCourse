@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlcLobbyViewController : UIViewController
+@interface PlcLobbyViewController : UITableViewController
 
 @end

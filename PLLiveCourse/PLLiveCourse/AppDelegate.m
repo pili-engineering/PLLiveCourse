@@ -17,8 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:[[PlcLobbyViewController alloc] init]];
-    self.window.rootViewController = nav;
+    UINavigationController * nav = [[UINavigationController alloc] init];
+    [nav pushViewController:[[PlcLobbyViewController alloc] init] animated:NO];
+    self.window = ({
+        UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        window.rootViewController = nav;
+        window.backgroundColor = [UIColor whiteColor];
+        window;
+    });
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
