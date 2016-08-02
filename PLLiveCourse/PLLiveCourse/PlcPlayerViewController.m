@@ -43,12 +43,33 @@
     });
     
     UIView *playerView = self.player.playerView;
-    playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
-    UIViewAutoresizingFlexibleHeight;
+    playerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin |
+                                  UIViewAutoresizingFlexibleBottomMargin |
+                                  UIViewAutoresizingFlexibleLeftMargin |
+                                  UIViewAutoresizingFlexibleRightMargin;
     [self.view addSubview:playerView];
     
     // 开始播放
     [self.player play];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.player stop];
+}
+
+- (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error
+{
+    NSLog(@"播放过程中发生错误：%@", error);
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"播放过程中发生错误"
+                                                                message:@"即将退出房间"
+                                                         preferredStyle:UIAlertControllerStyleAlert];
+    [av addAction:[UIAlertAction actionWithTitle:@"离开房间"
+                                           style:UIAlertActionStyleDestructive
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             [self.navigationController popViewControllerAnimated:YES];
+                                         }]];
+    [self presentViewController:av animated:true completion:nil];
 }
 
 @end

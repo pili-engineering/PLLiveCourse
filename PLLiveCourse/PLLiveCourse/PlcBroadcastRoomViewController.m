@@ -70,7 +70,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     if (self.cameraStreamingSession.isRunning) {
-        [self.cameraStreamingSession stop];
+        [self.cameraStreamingSession destroy];
         NSLog(@"通知服务器已关闭推流！");
     }
 }

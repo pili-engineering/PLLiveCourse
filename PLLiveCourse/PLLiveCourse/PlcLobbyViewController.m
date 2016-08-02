@@ -32,7 +32,7 @@
     [self.roomInfos addObject:({
         PlcRoomInfo *roomInfo = [[PlcRoomInfo alloc] init];
         roomInfo.roomName = @"大家快来看我的直播！";
-        roomInfo.playableURL = @"rtmp://live.hkstv.hk.lxdns.com/live/hks";
+        roomInfo.playableURL = @"http://pili-live-hdl.huacehuaban.com/huacehuaban/hangzhou-test.flv";
         roomInfo;
     })];
     
