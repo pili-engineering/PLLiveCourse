@@ -9,10 +9,11 @@
 #import "PlcLobbyViewController.h"
 #import "PlcRoomInfo.h"
 #import "PlcBroadcastRoomViewController.h"
+#import "PlcPlayerViewController.h"
 
 #define kTableViewCellIdentifier @"kTableViewCellIdentifier"
 
-@interface PlcLobbyViewController () <UITableViewDataSource>
+@interface PlcLobbyViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray<PlcRoomInfo *> *roomInfos;
 @end
 
@@ -25,6 +26,7 @@
     self.roomInfos = [[NSMutableArray<PlcRoomInfo *> alloc] init];
     
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kTableViewCellIdentifier];
     
     [self.roomInfos addObject:({
@@ -53,6 +55,13 @@
 - (void)_onPressedBeginBroadcastButton:(id)sender
 {
     PlcBroadcastRoomViewController *viewController = [[PlcBroadcastRoomViewController alloc] init];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PlcRoomInfo *roomInfo = [self.roomInfos objectAtIndex:indexPath.row];
+    PlcPlayerViewController *viewController = [[PlcPlayerViewController alloc] initWithRoomInfo:roomInfo];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
