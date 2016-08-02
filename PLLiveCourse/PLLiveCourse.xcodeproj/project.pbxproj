@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8BB0F2D4BD74DFBA20F5F22F /* libPods-PLLiveCourse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 721EF04022C3CE46EC4502E2 /* libPods-PLLiveCourse.a */; };
 		D222D65F1D5046C500890536 /* PlcBroadcastRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222D65E1D5046C500890536 /* PlcBroadcastRoomViewController.m */; };
+		D222D6661D5069D200890536 /* PlcRoomInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D222D6651D5069D200890536 /* PlcRoomInfo.m */; };
 		D2763B451D5040B20006002C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2763B441D5040B20006002C /* main.m */; };
 		D2763B481D5040B20006002C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2763B471D5040B20006002C /* AppDelegate.m */; };
 		D2763B501D5040B20006002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2763B4F1D5040B20006002C /* Assets.xcassets */; };
@@ -22,6 +23,8 @@
 		C3C89176E348C06621467155 /* Pods-PLLiveCourse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PLLiveCourse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PLLiveCourse/Pods-PLLiveCourse.debug.xcconfig"; sourceTree = "<group>"; };
 		D222D65D1D5046C500890536 /* PlcBroadcastRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlcBroadcastRoomViewController.h; sourceTree = "<group>"; };
 		D222D65E1D5046C500890536 /* PlcBroadcastRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlcBroadcastRoomViewController.m; sourceTree = "<group>"; };
+		D222D6641D5069D200890536 /* PlcRoomInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlcRoomInfo.h; sourceTree = "<group>"; };
+		D222D6651D5069D200890536 /* PlcRoomInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlcRoomInfo.m; sourceTree = "<group>"; };
 		D2763B401D5040B10006002C /* PLLiveCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLLiveCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2763B441D5040B20006002C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D2763B461D5040B20006002C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				D2763B5E1D5041870006002C /* PlcLobbyViewController.m */,
 				D222D65D1D5046C500890536 /* PlcBroadcastRoomViewController.h */,
 				D222D65E1D5046C500890536 /* PlcBroadcastRoomViewController.m */,
+				D222D6641D5069D200890536 /* PlcRoomInfo.h */,
+				D222D6651D5069D200890536 /* PlcRoomInfo.m */,
 				D2763B4F1D5040B20006002C /* Assets.xcassets */,
 				D2763B511D5040B20006002C /* LaunchScreen.storyboard */,
 				D2763B541D5040B20006002C /* Info.plist */,
@@ -230,6 +235,7 @@
 				D2763B5F1D5041870006002C /* PlcLobbyViewController.m in Sources */,
 				D222D65F1D5046C500890536 /* PlcBroadcastRoomViewController.m in Sources */,
 				D2763B451D5040B20006002C /* main.m in Sources */,
+				D222D6661D5069D200890536 /* PlcRoomInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
