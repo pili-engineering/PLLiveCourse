@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BB0F2D4BD74DFBA20F5F22F /* libPods-PLLiveCourse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 721EF04022C3CE46EC4502E2 /* libPods-PLLiveCourse.a */; };
 		D2763B451D5040B20006002C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2763B441D5040B20006002C /* main.m */; };
 		D2763B481D5040B20006002C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2763B471D5040B20006002C /* AppDelegate.m */; };
 		D2763B501D5040B20006002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2763B4F1D5040B20006002C /* Assets.xcassets */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E0A6671AE50640300E1A297 /* Pods-PLLiveCourse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PLLiveCourse.release.xcconfig"; path = "Pods/Target Support Files/Pods-PLLiveCourse/Pods-PLLiveCourse.release.xcconfig"; sourceTree = "<group>"; };
+		721EF04022C3CE46EC4502E2 /* libPods-PLLiveCourse.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PLLiveCourse.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3C89176E348C06621467155 /* Pods-PLLiveCourse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PLLiveCourse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PLLiveCourse/Pods-PLLiveCourse.debug.xcconfig"; sourceTree = "<group>"; };
 		D2763B401D5040B10006002C /* PLLiveCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLLiveCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2763B441D5040B20006002C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D2763B461D5040B20006002C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB0F2D4BD74DFBA20F5F22F /* libPods-PLLiveCourse.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FC1AFABC417249C0A2A75B3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3C89176E348C06621467155 /* Pods-PLLiveCourse.debug.xcconfig */,
+				2E0A6671AE50640300E1A297 /* Pods-PLLiveCourse.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		623D7B4D94C5EFFB0EE56B91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				721EF04022C3CE46EC4502E2 /* libPods-PLLiveCourse.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D2763B371D5040B10006002C = {
 			isa = PBXGroup;
 			children = (
 				D2763B421D5040B20006002C /* PLLiveCourse */,
 				D2763B411D5040B10006002C /* Products */,
+				4FC1AFABC417249C0A2A75B3 /* Pods */,
+				623D7B4D94C5EFFB0EE56B91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2763B571D5040B20006002C /* Build configuration list for PBXNativeTarget "PLLiveCourse" */;
 			buildPhases = (
+				0EA86575CF4AA1E7DD007778 /* [CP] Check Pods Manifest.lock */,
 				D2763B3C1D5040B10006002C /* Sources */,
 				D2763B3D1D5040B10006002C /* Frameworks */,
 				D2763B3E1D5040B10006002C /* Resources */,
+				0B654B51AEE3D3E4ACFB93DC /* [CP] Embed Pods Frameworks */,
+				73337CA133F8E5EAABDFEA7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,6 +167,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B654B51AEE3D3E4ACFB93DC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PLLiveCourse/Pods-PLLiveCourse-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0EA86575CF4AA1E7DD007778 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		73337CA133F8E5EAABDFEA7A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PLLiveCourse/Pods-PLLiveCourse-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2763B3C1D5040B10006002C /* Sources */ = {
@@ -250,6 +325,7 @@
 		};
 		D2763B581D5040B20006002C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3C89176E348C06621467155 /* Pods-PLLiveCourse.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -262,6 +338,7 @@
 		};
 		D2763B591D5040B20006002C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E0A6671AE50640300E1A297 /* Pods-PLLiveCourse.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -291,6 +368,7 @@
 				D2763B591D5040B20006002C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
