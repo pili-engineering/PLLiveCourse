@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kHost @"http://192.168.200.115:8080"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

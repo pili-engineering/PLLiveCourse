@@ -7,11 +7,13 @@
 //
 
 #import "PlcBroadcastRoomViewController.h"
+#import "AppDelegate.h"
 
 #import <PLCameraStreamingKit/PLCameraStreamingKit.h>
 
 @interface PlcBroadcastRoomViewController ()
 @property (nonatomic, strong) PLCameraStreamingSession *cameraStreamingSession;
+@property (nonatomic, strong) NSString *roomID;
 @end
 
 @implementation PlcBroadcastRoomViewController
@@ -54,15 +56,18 @@
         }
     }];
     
-    NSURL *cloudURL = [NSURL URLWithString:@"http://pili2-demo.qiniu.com/api/stream"];
-    
     __weak typeof(self) weakSelf = self;
-    [self _generatePushURLWithCloudURL:cloudURL withComplete:^(NSURL *pushURL) {
+    [self _generatePushURLWithComplete:^(PLStream *stream) {
         
         __strong typeof(self) strongSelf = weakSelf;
         // 当收到 pushURL 时，view controoler 可能已经提前关闭和销毁，此时不可进行推流
         if (strongSelf) {
-            
+            strongSelf.cameraStreamingSession.stream = stream;
+            [strongSelf.cameraStreamingSession startWithCompleted:^(BOOL success) {
+                if (!success) {
+                    NSLog(@"推流失败!!");
+                }
+            }];
         }
     }];
 }
@@ -71,7 +76,7 @@
 {
     if (self.cameraStreamingSession.isRunning) {
         [self.cameraStreamingSession destroy];
-        NSLog(@"通知服务器已关闭推流！");
+        [self _notifyServerExitRoom];
     }
 }
 
@@ -120,27 +125,43 @@
                                                               videoOrientation:captureOrientation];
 }
 
-- (void)_generatePushURLWithCloudURL:(NSURL *)cloudURL withComplete:(void (^)(NSURL *pushURL))complete
+- (void)_generatePushURLWithComplete:(void (^)(PLStream *stream))complete
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:cloudURL];
+    NSString *url = [NSString stringWithFormat:@"%@%@", kHost, @"/api/pilipili"];
+    NSLog(@"connect to %@", url);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     request.HTTPMethod = @"POST";
     request.timeoutInterval = 10;
+    [request setHTTPBody:[@"title=room" dataUsingEncoding:NSUTF8StringEncoding]];
     
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable responseError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSError *error = responseError;
             if (error != nil || response == nil || data == nil) {
-                NSLog(@"获取推流 URL 失败");
+                NSLog(@"获取推流 URL 失败 %@", error);
                 return;
             }
-            
-            NSURL *pushURL = [NSURL URLWithString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]];
+            NSDictionary *streamJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+            NSLog(@"streamJSON : %@", streamJSON);
+            self.roomID = streamJSON[@"id"];
+            PLStream *stream = [PLStream streamWithJSON:streamJSON];
             if (complete) {
-                complete(pushURL);
+                complete(stream);
             }
         });
     }];
     [task resume];
+}
+
+- (void)_notifyServerExitRoom
+{
+    if (self.roomID) {
+        NSString *url = [NSString stringWithFormat:@"%@%@%@", kHost, @"/api/pilipili/", self.roomID];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        request.HTTPMethod = @"POST";
+        request.timeoutInterval = 10;
+        [request setHTTPBody:[@"_method=DELETE" dataUsingEncoding:NSUTF8StringEncoding]];
+    }
 }
 
 @end
