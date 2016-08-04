@@ -76,8 +76,8 @@
 {
     if (self.cameraStreamingSession.isRunning) {
         [self.cameraStreamingSession destroy];
-        [self _notifyServerExitRoom];
     }
+    [self _notifyServerExitRoom];
 }
 
 - (void)requireDevicePermissionWithComplete:(void (^)(BOOL granted))complete
@@ -158,9 +158,10 @@
     if (self.roomID) {
         NSString *url = [NSString stringWithFormat:@"%@%@%@", kHost, @"/api/pilipili/", self.roomID];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-        request.HTTPMethod = @"POST";
+        request.HTTPMethod = @"DELETE";
         request.timeoutInterval = 10;
-        [request setHTTPBody:[@"_method=DELETE" dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [[[NSURLSession sharedSession] dataTaskWithRequest:request] resume];
     }
 }
 

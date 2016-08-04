@@ -85,11 +85,14 @@
             return;
         }
         NSArray *rooms = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
-        NSLog(@"---> %@", rooms);
         self.roomInfos = ({
             NSMutableArray<PlcRoomInfo *> *roomsInfos = [[NSMutableArray<PlcRoomInfo *> alloc] init];
             for (NSUInteger i = 0; i < rooms.count; i++) {
                 NSDictionary *room = rooms[i];
+                PlcRoomInfo *roomInfo = [[PlcRoomInfo alloc] init];
+                roomInfo.roomName = room[@"title"];
+                roomInfo.playableURL = room[@"play"][@"ORIGIN"];
+                [roomsInfos addObject:roomInfo];
             }
             roomsInfos;
         });
