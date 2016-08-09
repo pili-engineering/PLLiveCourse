@@ -31,6 +31,10 @@
     
     self.cameraStreamingSession = [self _generateCameraStreamingSession];
     
+    [self.cameraStreamingSession setBeautify:1.0];
+    [self.cameraStreamingSession setWaterMarkWithImage:[UIImage imageNamed:@"qiniu.png"]
+                                              position:CGPointMake(100, 100)];
+    
     [self requireDevicePermissionWithComplete:^(BOOL granted) {
         
         if (granted) {

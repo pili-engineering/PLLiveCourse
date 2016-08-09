@@ -11,6 +11,7 @@
 		D222D65F1D5046C500890536 /* PlcBroadcastRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222D65E1D5046C500890536 /* PlcBroadcastRoomViewController.m */; };
 		D222D6661D5069D200890536 /* PlcRoomInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D222D6651D5069D200890536 /* PlcRoomInfo.m */; };
 		D222D6691D50779A00890536 /* PlcPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D222D6681D50779A00890536 /* PlcPlayerViewController.m */; };
+		D22A44741D59CAF5008E6DD3 /* qiniu.png in Resources */ = {isa = PBXBuildFile; fileRef = D22A44731D59CAF5008E6DD3 /* qiniu.png */; };
 		D2763B451D5040B20006002C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2763B441D5040B20006002C /* main.m */; };
 		D2763B481D5040B20006002C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2763B471D5040B20006002C /* AppDelegate.m */; };
 		D2763B501D5040B20006002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2763B4F1D5040B20006002C /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		D222D6651D5069D200890536 /* PlcRoomInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlcRoomInfo.m; sourceTree = "<group>"; };
 		D222D6671D50779A00890536 /* PlcPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlcPlayerViewController.h; sourceTree = "<group>"; };
 		D222D6681D50779A00890536 /* PlcPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlcPlayerViewController.m; sourceTree = "<group>"; };
+		D22A44731D59CAF5008E6DD3 /* qiniu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = qiniu.png; path = "../../../pili-camera-streaming-ios-kit/PLMediaStreamingKitDemo/PLCameraStreamingKitDemo/qiniu.png"; sourceTree = "<group>"; };
 		D2763B401D5040B10006002C /* PLLiveCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLLiveCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2763B441D5040B20006002C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D2763B461D5040B20006002C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				D222D6681D50779A00890536 /* PlcPlayerViewController.m */,
 				D222D6641D5069D200890536 /* PlcRoomInfo.h */,
 				D222D6651D5069D200890536 /* PlcRoomInfo.m */,
+				D22A44731D59CAF5008E6DD3 /* qiniu.png */,
 				D2763B4F1D5040B20006002C /* Assets.xcassets */,
 				D2763B511D5040B20006002C /* LaunchScreen.storyboard */,
 				D2763B541D5040B20006002C /* Info.plist */,
@@ -176,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D22A44741D59CAF5008E6DD3 /* qiniu.png in Resources */,
 				D2763B531D5040B20006002C /* LaunchScreen.storyboard in Resources */,
 				D2763B501D5040B20006002C /* Assets.xcassets in Resources */,
 			);
